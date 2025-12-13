@@ -1,0 +1,155 @@
+SubKillX – Subscription Cancellation Tracker (Financial Anxiety App)
+REPLIT AI PROMPT
+
+Create a production-ready Expo monorepo named SubKillX.
+
+This is a financial utility app that helps users identify and eliminate wasted subscription spending. The tone should feel serious, premium, and empowering, with bold typography and glassmorphism.
+
+TECH STACK
+
+Expo (latest)
+
+TypeScript
+
+expo-blur
+
+expo-haptics
+
+react-native-reanimated
+
+RevenueCat
+
+Secure local storage
+
+iOS-only focus
+
+VISUAL DESIGN SYSTEM
+
+Background: near-black charcoal (#08090C)
+
+Glass cards: frosted white, 18 percent opacity
+
+Accent color:
+
+Red for waste (#FF4D4D)
+
+Green for savings (#32D583)
+
+Typography:
+
+Headings: Retrola Ink
+
+Large currency figures (72px+)
+
+Design language:
+
+Editorial finance aesthetic
+
+Strong contrast
+
+Minimal clutter
+
+Apple-inspired spacing
+
+CORE SCREENS
+1. Onboarding
+
+One question:
+“How many subscriptions do you think you’re paying for?”
+
+Haptic feedback on selection
+
+2. Scan Screen
+
+Animated scanning text
+
+“Finding hidden subscriptions…”
+
+Medium haptic pulse during scan
+
+3. Results Screen (LOCKED)
+
+Oversized leaked money counter:
+“$247 / month”
+
+Individual glass cards for subscriptions
+
+Cancel buttons blurred and disabled
+
+Red accent highlights
+
+4. Paywall Screen
+
+Headline:
+“Stop paying for what you don’t use”
+
+Plans:
+
+Monthly $9.99 (7-day free trial)
+
+Annual $29.99 (Best Value)
+
+Weekly plan hidden
+
+RevenueCat integration
+
+Haptic feedback on selection
+
+5. Savings Screen (Unlocked)
+
+Green savings counter animation
+
+Cancelled subscription list
+
+Success haptic on cancellation
+
+MONETISATION (RevenueCat)
+
+Entitlement: premium_access
+
+Products:
+
+subkillx_monthly
+
+subkillx_annual
+
+Monthly has 7-day trial
+
+Annual has no trial
+
+Entitlement gates:
+
+Cancellation guides
+
+Tracking
+
+Alerts
+
+HAPTIC DESIGN
+
+Light haptic on navigation
+
+Medium haptic on savings reveal
+
+Heavy haptic on successful cancellation
+
+ANIMATION PRINCIPLES
+
+Money counters animate upward
+
+Glass cards fade and slide
+
+Paywall transitions feel “serious”, not playful
+
+FILE STRUCTURE
+
+/apps/mobile
+/components/glass
+/components/money
+/screens
+/services/revenuecat
+/hooks/useSubscription
+/theme
+
+Build the app to feel like a paid finance tool, not a gimmick.
+Everything must feel intentional and conversion-focused.
