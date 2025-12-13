@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "SubKillX",
-    "slug": "subkillx",
+    "name": "UnsubX",
+    "slug": "unsubx",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "subkillx",
+    "scheme": "unsubx",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.subkillx.app"
+      "bundleIdentifier": "com.unsubx.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +19,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.subkillx.app"
+      "package": "com.unsubx.app"
     },
     "web": {
       "output": "single",
