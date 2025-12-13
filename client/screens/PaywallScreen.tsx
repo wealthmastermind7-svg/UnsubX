@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import * as WebBrowser from "expo-web-browser";
 import Animated, {
   useAnimatedStyle,
   withSpring,
@@ -47,6 +48,14 @@ export default function PaywallScreen({ navigation, route }: Props) {
   const handleClose = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     navigation.goBack();
+  };
+
+  const handleOpenPrivacyPolicy = async () => {
+    await WebBrowser.openBrowserAsync("https://example.com/privacy");
+  };
+
+  const handleOpenTerms = async () => {
+    await WebBrowser.openBrowserAsync("https://example.com/terms");
   };
 
   const buttonAnimatedStyle = useAnimatedStyle(() => ({
@@ -194,6 +203,15 @@ export default function PaywallScreen({ navigation, route }: Props) {
             ? "7-day free trial, then $9.99/month. Cancel anytime."
             : "Billed annually at $29.99. Cancel anytime."}
         </ThemedText>
+        <View style={styles.legalLinks}>
+          <Pressable onPress={handleOpenPrivacyPolicy}>
+            <ThemedText style={styles.legalLinkText}>Privacy Policy</ThemedText>
+          </Pressable>
+          <ThemedText style={styles.legalDivider}>|</ThemedText>
+          <Pressable onPress={handleOpenTerms}>
+            <ThemedText style={styles.legalLinkText}>Terms of Service</ThemedText>
+          </Pressable>
+        </View>
       </Animated.View>
     </View>
   );
@@ -373,5 +391,21 @@ const styles = StyleSheet.create({
     color: Colors.dark.textSecondary,
     textAlign: "center",
     lineHeight: 18,
+  },
+  legalLinks: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: Spacing.md,
+  },
+  legalLinkText: {
+    fontSize: 12,
+    color: Colors.dark.textSecondary,
+    textDecorationLine: "underline",
+  },
+  legalDivider: {
+    fontSize: 12,
+    color: Colors.dark.textSecondary,
+    marginHorizontal: Spacing.sm,
   },
 });
