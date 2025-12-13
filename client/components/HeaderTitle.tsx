@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
-import { Spacing } from "@/constants/theme";
+import { Spacing, Colors } from "@/constants/theme";
 
 interface HeaderTitleProps {
   title: string;
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     fontWeight: "600",
+    color: Colors.dark.text,
   },
 });

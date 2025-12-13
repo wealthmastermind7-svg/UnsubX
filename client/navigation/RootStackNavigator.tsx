@@ -1,12 +1,28 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MainTabNavigator from "@/navigation/MainTabNavigator";
-import ModalScreen from "@/screens/ModalScreen";
 import { useScreenOptions } from "@/hooks/useScreenOptions";
 
+import OnboardingScreen from "@/screens/OnboardingScreen";
+import ScanScreen from "@/screens/ScanScreen";
+import ResultsScreen from "@/screens/ResultsScreen";
+import PaywallScreen from "@/screens/PaywallScreen";
+import SavingsScreen from "@/screens/SavingsScreen";
+
 export type RootStackParamList = {
-  Main: undefined;
-  Modal: undefined;
+  Onboarding: undefined;
+  Scan: { estimatedCount: number };
+  Results: { subscriptions: Subscription[] };
+  Paywall: { subscriptions: Subscription[] };
+  Savings: { subscriptions: Subscription[] };
+};
+
+export type Subscription = {
+  id: string;
+  name: string;
+  price: number;
+  icon: string;
+  category: string;
+  cancelled: boolean;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -15,20 +31,21 @@ export default function RootStackNavigator() {
   const screenOptions = useScreenOptions();
 
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen
-        name="Main"
-        component={MainTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Modal"
-        component={ModalScreen}
-        options={{
-          presentation: "modal",
-          headerTitle: "Modal",
-        }}
-      />
+    <Stack.Navigator
+      screenOptions={{
+        ...screenOptions,
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: "#08090C",
+        },
+        animation: "fade",
+      }}
+    >
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Scan" component={ScanScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
+      <Stack.Screen name="Paywall" component={PaywallScreen} />
+      <Stack.Screen name="Savings" component={SavingsScreen} />
     </Stack.Navigator>
   );
 }
