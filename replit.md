@@ -35,9 +35,13 @@ UnsubX is an iOS subscription management app that helps users identify, track, a
 - `server/` - Express backend
 
 ## Recent Changes
+- Integrated RevenueCat for in-app purchases (with Expo Go mock fallback)
+- Added useRevenueCat hook for premium status management
 - Added Privacy Policy and Terms of Service links to PaywallScreen
 - Changed app name from SubKillX to UnsubX
 - Updated bundle identifiers and slug in app.json
+- Added cancel button to ScanScreen for better navigation
+- Created marketing landing page (public/landing.html)
 
 ## User Preferences
 - iOS-first experience
