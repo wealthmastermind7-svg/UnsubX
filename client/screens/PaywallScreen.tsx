@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Pressable, ScrollView } from "react-native";
+import { View, StyleSheet, Pressable, ScrollView, ActivityIndicator, Alert, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Feather } from "@expo/vector-icons";
@@ -16,6 +16,7 @@ import Animated, {
 import { ThemedText } from "@/components/ThemedText";
 import { Colors, Spacing, BorderRadius } from "@/constants/theme";
 import { RootStackParamList } from "@/navigation/RootStackNavigator";
+import { useRevenueCat } from "@/hooks/useRevenueCat";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Paywall">;
 
@@ -26,6 +27,7 @@ export default function PaywallScreen({ navigation, route }: Props) {
   const { subscriptions } = route.params;
   const [selectedPlan, setSelectedPlan] = useState<Plan>("annual");
   const buttonScale = useSharedValue(1);
+  const { purchasePremium, restorePurchase, isLoading, isMock } = useRevenueCat();
 
   const totalMonthly = subscriptions.reduce((sum, sub) => sum + sub.price, 0);
   const annualSavings = totalMonthly * 12;
@@ -35,14 +37,39 @@ export default function PaywallScreen({ navigation, route }: Props) {
     setSelectedPlan(plan);
   };
 
-  const handleSubscribe = () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    navigation.replace("Savings", { subscriptions });
+  const handleSubscribe = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    
+    const success = await purchasePremium();
+    
+    if (success) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      navigation.replace("Savings", { subscriptions });
+    } else if (isMock) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      navigation.replace("Savings", { subscriptions });
+    }
   };
 
-  const handleRestore = () => {
+  const handleRestore = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    navigation.replace("Savings", { subscriptions });
+    
+    const restored = await restorePurchase();
+    
+    if (restored) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      navigation.replace("Savings", { subscriptions });
+    } else {
+      if (Platform.OS !== "web") {
+        Alert.alert(
+          "No Purchases Found",
+          "We couldn't find any previous purchases to restore.",
+          [{ text: "OK" }]
+        );
+      } else {
+        navigation.replace("Savings", { subscriptions });
+      }
+    }
   };
 
   const handleClose = () => {
