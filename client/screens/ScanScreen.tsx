@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import Animated, {
   useAnimatedStyle,
@@ -46,6 +47,7 @@ export default function ScanScreen({ navigation, route }: Props) {
   const [dotsCount, setDotsCount] = useState(1);
   const pulseScale = useSharedValue(1);
   const textOpacity = useSharedValue(1);
+  const [canCancel, setCanCancel] = useState(true);
 
   useEffect(() => {
     const messageInterval = setInterval(() => {
@@ -74,6 +76,7 @@ export default function ScanScreen({ navigation, route }: Props) {
     }, 1500);
 
     const navigateTimeout = setTimeout(() => {
+      setCanCancel(false);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       navigation.replace("Results", { subscriptions: mockSubscriptions });
     }, 6000);
@@ -94,8 +97,27 @@ export default function ScanScreen({ navigation, route }: Props) {
     opacity: textOpacity.value,
   }));
 
+  const handleCancel = () => {
+    if (canCancel) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      navigation.goBack();
+    }
+  };
+
   return (
     <View style={[styles.container, { paddingTop: insets.top + Spacing["4xl"], paddingBottom: insets.bottom + Spacing.xl }]}>
+      <Pressable
+        onPress={handleCancel}
+        disabled={!canCancel}
+        style={styles.cancelButton}
+      >
+        <Feather 
+          name="x" 
+          size={24} 
+          color={canCancel ? Colors.dark.textSecondary : "rgba(255,255,255,0.2)"} 
+        />
+      </Pressable>
+
       <Animated.View entering={FadeIn.duration(800)} style={styles.content}>
         <Animated.View style={[styles.pulseContainer, pulseStyle]}>
           <View style={styles.innerCircle}>
@@ -122,6 +144,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.dark.backgroundRoot,
     paddingHorizontal: Spacing.xl,
+  },
+  cancelButton: {
+    width: 44,
+    height: 44,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: -Spacing.md,
   },
   content: {
     flex: 1,

@@ -60,7 +60,7 @@ export default function OnboardingScreen({ navigation }: Props) {
           style={styles.logo}
           resizeMode="contain"
         />
-        <ThemedText style={styles.appName}>SubKillX</ThemedText>
+        <ThemedText style={styles.appName}>UnsubX</ThemedText>
       </Animated.View>
 
       <Animated.View entering={FadeIn.delay(200).duration(600)} style={styles.content}>
