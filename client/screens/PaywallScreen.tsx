@@ -78,11 +78,11 @@ export default function PaywallScreen({ navigation, route }: Props) {
   };
 
   const handleOpenPrivacyPolicy = async () => {
-    await WebBrowser.openBrowserAsync("https://example.com/privacy");
+    await WebBrowser.openBrowserAsync("https://luxeweb.cerolauto.store/UnsubX/privacy-policy");
   };
 
   const handleOpenTerms = async () => {
-    await WebBrowser.openBrowserAsync("https://example.com/terms");
+    await WebBrowser.openBrowserAsync("https://luxeweb.cerolauto.store/UnsubX/terms");
   };
 
   const buttonAnimatedStyle = useAnimatedStyle(() => ({
