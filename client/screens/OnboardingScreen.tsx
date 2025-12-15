@@ -14,7 +14,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { Colors, Spacing, BorderRadius } from "@/constants/theme";
 import { RootStackParamList } from "@/navigation/RootStackNavigator";
 
-type Props = NativeStackScreenProps<RootStackParamList, "OnboardingQuestion">;
+type Props = NativeStackScreenProps<RootStackParamList, "Onboarding">;
 
 const subscriptionOptions = [
   { label: "1-3", value: 2 },
@@ -36,7 +36,7 @@ export default function OnboardingScreen({ navigation }: Props) {
   const handleContinue = () => {
     if (selectedOption !== null) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      navigation.replace("Scan", { estimatedCount: selectedOption });
+      navigation.navigate("Scan", { estimatedCount: selectedOption });
     }
   };
 
