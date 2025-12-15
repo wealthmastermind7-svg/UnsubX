@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnsubX - Stop Wasting Money on Subscriptions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #08090C;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #32D583 0%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #A1A1A6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .features::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .features::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .features::-webkit-scrollbar-thumb {
+            background: rgba(50, 213, 131, 0.5);
+            border-radius: 4px;
+        }
+
+        .feature {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            min-width: 280px;
+        }
+
+        .feature-text {
+            padding: 0 20px;
+        }
+
+        .feature-text h2 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .feature-text .highlight {
+            color: #FF4D4D;
+        }
+
+        .feature-text .highlight-green {
+            color: #32D583;
+        }
+
+        .feature-image {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .feature-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+        }
+
+        .feature.reverse {
+            flex-direction: column-reverse;
+        }
+
+        .cta-section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #32D583;
+            color: #08090C;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(50, 213, 131, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .features {
+                flex-direction: column;
+                gap: 60px;
+            }
+
+            .feature {
+                min-width: 100%;
+            }
+
+            .feature-image {
+                height: 400px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UnsubX</h1>
+            <p>Discover, manage, and cancel subscriptions you forgot about. Reclaim your money and save thousands every year.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-text">
+                    <h2>Discover unused subscriptions</h2>
+                </div>
+                <div class="feature-image">
+                    <img src="attached_assets/01_1765785117681.png" alt="Discover unused subscriptions">
+                </div>
+            </div>
+
+            <div class="feature reverse">
+                <div class="feature-text">
+                    <h2>See your subscription <span class="highlight">waste</span></h2>
+                </div>
+                <div class="feature-image">
+                    <img src="attached_assets/03_1765785117691.png" alt="See your subscription waste">
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-text">
+                    <h2>Cancel subscriptions easily</h2>
+                </div>
+                <div class="feature-image">
+                    <img src="attached_assets/05_1765785117692.png" alt="Cancel subscriptions easily">
+                </div>
+            </div>
+
+            <div class="feature reverse">
+                <div class="feature-text">
+                    <h2>Track your <span class="highlight-green">savings</span></h2>
+                </div>
+                <div class="feature-image">
+                    <img src="attached_assets/06_1765785117693.png" alt="Track your savings">
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Start saving today</h2>
+            <button class="cta-button">Download UnsubX</button>
+        </div>
+    </div>
+</body>
+</html>
