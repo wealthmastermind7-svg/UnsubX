@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 
-const REVENUECAT_IOS_API_KEY = 'test_nCIVUMQPfemLdevxXGvNYeUltuH';
+const REVENUECAT_IOS_API_KEY = 'appl_PMVAcOYuNdHwcblnVTpLJOyxRlt';
 const REVENUECAT_ANDROID_API_KEY = 'test_nCIVUMQPfemLdevxXGvNYeUltuH';
 const ENTITLEMENT_ID = 'UnsubX Pro';
 
@@ -67,6 +67,7 @@ export async function configureRevenueCat(): Promise<void> {
         ? REVENUECAT_IOS_API_KEY 
         : REVENUECAT_ANDROID_API_KEY;
 
+      console.log('[RevenueCat] Configuring with iOS API key:', Platform.OS === 'ios' ? 'YES' : 'NO');
       await Purchases.configure({ apiKey });
       isConfigured = true;
       console.log('[RevenueCat] SDK configured successfully');
